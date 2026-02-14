@@ -1,11 +1,48 @@
-# Desafio de projeto é criar uma aplicação Ruby que de a sainda do nome completo e a idade do usuário,
-# o usuário deve digita primeiro seu nome completo, depois sua idade e a saida dever ser tudo em uma unica linha, 
-# exemplo: "nome:[nome completo] idade: [idade]."
+def calculadora
+    begin
+        loop do
+            puts "\n--- Calculadora Ruby ---"
+            puts "1. Adição (+)"
+            puts "2. Subtração (-)"
+            puts "3. Multiplicação (*)"
+            puts "4. Divisão (/)"
+            puts "0. Sair"
+            print "Escolha uma opção: "
+            
+            input = gets
+            break if input.nil?
 
-puts "Digite seu nome completo:"
-full_name = gets.chomp
+            opcao = input.chomp.to_i
+            break if opcao == 0
 
-puts "Digite sua idade:"
-age = gets.chomp
+            if (1..4).include?(opcao)
+            print "Digite o primeiro número: "
+            num1 = gets.chomp.to_f
+            print "Digite o segundo número: "
+            num2 = gets.chomp.to_f
 
-puts "nome: #{full_name} idade: #{age}."
+            case opcao
+            when 1
+                puts "Resultado: #{num1 + num2}"
+            when 2
+                puts "Resultado: #{num1 - num2}"
+            when 3
+                puts "Resultado: #{num1 * num2}"
+            when 4
+                if num2 != 0
+                puts "Resultado: #{num1 / num2}"
+                else
+                puts "Erro: Divisão por zero não é permitida!"
+                end
+            end
+            else
+            puts "Opção inválida, tente novamente."
+            end
+        end
+    rescue Interrupt
+    puts "\nPrograma interrompido. Até logo!"
+    ensure
+    puts "Até logo!"
+    end
+end
+calculadora
